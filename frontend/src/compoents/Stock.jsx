@@ -1,7 +1,7 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import Card from './Card';
 import News from './News';
-import NewsModal from './NewsModal';
+import Detail from './Detail';
 
 function Stock() {
   return (
@@ -13,14 +13,14 @@ function Stock() {
         
         <div className='row'>
             <div className='col-2'>
-                <Card/>
+                <Card title="1"/>
                 <br/>
             </div>
             <div className='col-2'>
-                <Card/>
+                <Card title="2"/>
             </div>
             <div className='col-2'>
-                <Card/>
+                <Card title="3"/>
             </div>
             <div className='col-2'>
                 <Card/>
@@ -130,8 +130,7 @@ function Stock() {
         </div>
 
         </div>
-
-        <NewsModal/>
+        <Detail/>
 
 
     </div>
