@@ -4,6 +4,8 @@ import News from './News';
 import Detail from './Detail';
 
 function Stock() {
+
+    const [active, setActive] = useState("firstCard");
   return (
     <div>
         <div className='row'>
@@ -13,14 +15,14 @@ function Stock() {
         
         <div className='row'>
             <div className='col-2'>
-                <Card title="1"/>
+                {active === "firstCard" && <Card title="1"/>}
                 <br/>
             </div>
             <div className='col-2'>
-                <Card title="2"/>
+            {active === "secondCard" && <Card title="2"/>}
             </div>
             <div className='col-2'>
-                <Card title="3"/>
+            {active === "thirdCard" && <Card title="3"/>}
             </div>
             <div className='col-2'>
                 <Card/>
