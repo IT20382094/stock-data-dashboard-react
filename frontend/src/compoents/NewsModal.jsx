@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Modal, Button } from "react-bootstrap";
 
-function NewsModal() {
+function NewsModal(value) {
+  let text =value;
+  console.log(value)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -9,7 +11,7 @@ function NewsModal() {
   
     return (
         <div>
-        <button variant="primary" onClick={handleShow}>
+        <button variant="primary" className="btn btn-success" onClick={handleShow}>
           View more
         </button>
   
@@ -20,7 +22,7 @@ function NewsModal() {
           <Modal.Body>
             <img src='aaa.jpg'></img>
             <br/>
-            Woohoo, you're reading this text in a modal!</Modal.Body>
+            {text.value}</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close

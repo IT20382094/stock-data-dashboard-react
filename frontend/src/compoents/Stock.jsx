@@ -1,11 +1,9 @@
 import React ,{useState} from 'react'
 import Card from './Card';
 import News from './News';
-import Detail from './Detail';
 
 function Stock() {
 
-    const [active, setActive] = useState("firstCard");
   return (
     <div>
         <div className='row'>
@@ -15,44 +13,25 @@ function Stock() {
         
         <div className='row'>
             <div className='col-2'>
-                {active === "firstCard" && <Card title="1"/>}
+                {<Card title="1" amount="8USD"/>}
                 <br/>
             </div>
             <div className='col-2'>
-            {active === "secondCard" && <Card title="2"/>}
+            {<Card title="2" amount="16USD"/>}
             </div>
             <div className='col-2'>
-            {active === "thirdCard" && <Card title="3"/>}
+            {<Card title="3" amount="20USD"/>}
             </div>
             <div className='col-2'>
-                <Card/>
+                <Card title="4" amount="5USD"/>
             </div>
             <div className='col-2'>
-                <Card/>
+                <Card title="5" amount="10USD"/>
             </div>
 
         </div>
 
-        <div className='row'>
-            <div className='col-2'>
-                <Card/>
-                <br/>
-            </div>
-            <div className='col-2'>
-                <Card/>
-            </div>
-            <div className='col-2'>
-                <Card/>
-            </div>
-            <div className='col-2'>
-                <Card/>
-            </div>
-            <div className='col-2'>
-                <Card/>
-            </div>
-        </div>
-
-        <div className='row'>
+        {/* <div className='row'>
             <div className='col-2'>
                 <Card/>
                 <br/>
@@ -108,6 +87,25 @@ function Stock() {
                 <Card/>
             </div>
         </div>
+
+        <div className='row'>
+            <div className='col-2'>
+                <Card/>
+                <br/>
+            </div>
+            <div className='col-2'>
+                <Card/>
+            </div>
+            <div className='col-2'>
+                <Card/>
+            </div>
+            <div className='col-2'>
+                <Card/>
+            </div>
+            <div className='col-2'>
+                <Card/>
+            </div>
+        </div> */}
 
         </div>
 
@@ -117,8 +115,8 @@ function Stock() {
             <div class="card-body">
               <h1 class="card-title">Latest News</h1>
               <div class="list-group">
-                <News/>
-                <News/>
+                {/* {<News Ntitle="11" details="111"/>} */}
+                <News title="asssd"/>
                 <News/>
                 <News/>
                 <News/>
@@ -132,9 +130,11 @@ function Stock() {
         </div>
 
         </div>
-        <Detail/>
+        {/* <Detail/> */}
 
 
+       
+        
     </div>
   )
 }
