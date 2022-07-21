@@ -1,61 +1,43 @@
 import React,{Fragment, useEffect, useState} from 'react'
 import NewsModal from './NewsModal';
 
-// export default function News() {
-//   const [news, setNews] = useState([]);
+export default function News() {
+  const [news, setNews] = useState([]);
 
 
-//   const getNews = async () =>{
-//   try{
-//       const response = await fetch("http://localhost:5000/news");
-//       const jsonData = await response.json();
-//       // console.log(jsonData);
-//       setNews(jsonData);
+  const getNews = async () =>{
+  try{
+      const response = await fetch("http://localhost:5000/news");
+      const jsonData = await response.json();
+      setNews(jsonData.news);
       
-//   }catch(err){
-//     console.log(err.message);
-//   }
-//   };
+  }catch(err){
+    console.log(err.message);
+  }
+  };
 
-//   useEffect(()=>{
-//     getNews();
-//   },[]);
+  useEffect(()=>{
+    getNews();
+  },[]);
 
-//   return(
-//   <div>
-//     {news.map((news) =>{
-//       // console.log(news);
-//       <div class="card">
-//         <div class="card-body">
-//           <h5 class="card-title">{news.title}</h5>
-//           <h6 class="card-subtitle mb-2 text-muted">{news.author}</h6>
-//           <p class="card-text">{news.description}</p>
-//           <NewsModal value={news.description}/>
-//         </div>
-//     </div>
-//     })
-//     }
-//   </div>
-//   )
-// }
+  console.log(news);
 
-
-
-function News(s) {
-  let value=s
-  return (
-    <div>
-      <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-muted">3 days ago</small>
-                  </div>
-                  <p class="mb-1">{value.title}</p>
-                  <NewsModal value={value.title}/>
-                </a>
+  return(
+  <div>
+    <h1>Latest News</h1>
+    {news&&news.map((newss) =>{
+     return <div className="card">
+        <div className="card-body">
+          <h5 className="card-title">{newss.headline}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">{newss.author}</h6>
+          <p className="card-text">{newss.created_at}</p>
+          <NewsModal value={newss.content}/>
+        </div>
     </div>
+    })
+    }
+  </div>
   )
 }
 
-export default News;
 

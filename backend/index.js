@@ -28,37 +28,6 @@ app.get("/news", async (req, res) => {
   }
 });
 
-//Insert
-// app.post("/crptos", async (req, res) => {
-//   try {
-//     const { source, date, open, close, highest, lowest, volume, market_cap } = req.body;
-//     const newCrypto = await pool.query(
-//       "INSERT INTO currency (source, date, open, close, highest, lowest, volume, market_cap) VALUES($1,$1,$1,$1,$1,$1,$1,$1) RETURNING *",
-//       [source, date, open, close, highest, lowest, volume, market_cap]
-//     );
-
-//     res.json(newCrypto.rows[0]);
-//     console.log(req.body);
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// });
-
-// app.get("/crptos", async (req, res) => {
-//   try {
-//     // const { source, date, open, close, highest, lowest, volume, market_cap } = req.body;
-//     const newCrypto = await pool.query(
-//       "SELECT * from currency",
-//     );
-
-//     res.json(newCrypto.rows);
-//     console.log(req.body);
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// });
-
-
 
 app.listen(5000, () => {
   console.log("server has started on port 5000");

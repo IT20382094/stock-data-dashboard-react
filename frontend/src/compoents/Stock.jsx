@@ -110,28 +110,10 @@ function Stock() {
         </div>
 
         <div className='col-3'>
-            
-          <div class="card">
-            <div class="card-body">
-              <h1 class="card-title">Latest News</h1>
-              <div class="list-group">
-                {/* {<News Ntitle="11" details="111"/>} */}
-                <News title="asssd"/>
-                <News/>
-                <News/>
-                <News/>
-                <News/>
-                <News/>
-                <News/>
-              </div>
-
-            </div>
-          </div>
+        <News/>
         </div>
 
         </div>
-        {/* <Detail/> */}
-
 
        
         
