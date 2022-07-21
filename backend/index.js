@@ -19,7 +19,7 @@ const alpaca = new Alpaca(options);
 
 app.get("/news", async (req, res) => {
   try {
-    const response = await fetch("https://data.alpaca.markets/v1beta1/news",{method: 'GET', headers:{'APCA-API-KEY-ID': keyId,'APCA-API-SECRET-KEY':secretKey}});
+    const response = await fetch("https://data.alpaca.markets/v1beta1/news",{method: 'GET', headers:{'APCA-API-KEY-ID': 'PKX03IU2OAI9T2FA9PLD','APCA-API-SECRET-KEY':'9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ'}});
     const jsonData = await response.json();
 
     res.json(jsonData);

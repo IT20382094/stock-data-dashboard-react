@@ -1,9 +1,45 @@
 import React,{Fragment, useEffect, useState} from 'react'
 import NewsModal from './NewsModal';
 
-// const ListNews = () =>{
-//   const [todo]
+// export default function News() {
+//   const [news, setNews] = useState([]);
+
+
+//   const getNews = async () =>{
+//   try{
+//       const response = await fetch("http://localhost:5000/news");
+//       const jsonData = await response.json();
+//       // console.log(jsonData);
+//       setNews(jsonData);
+      
+//   }catch(err){
+//     console.log(err.message);
+//   }
+//   };
+
+//   useEffect(()=>{
+//     getNews();
+//   },[]);
+
+//   return(
+//   <div>
+//     {news.map((news) =>{
+//       // console.log(news);
+//       <div class="card">
+//         <div class="card-body">
+//           <h5 class="card-title">{news.title}</h5>
+//           <h6 class="card-subtitle mb-2 text-muted">{news.author}</h6>
+//           <p class="card-text">{news.description}</p>
+//           <NewsModal value={news.description}/>
+//         </div>
+//     </div>
+//     })
+//     }
+//   </div>
+//   )
 // }
+
+
 
 function News(s) {
   let value=s
@@ -20,23 +56,6 @@ function News(s) {
     </div>
   )
 }
- 
-// const News = ({ news }) => {
-//     return (
-//         <div>
-//             {news.map((news) => (
-//                 <div class="card">
-//                     <div class="card-body">
-//                         <h5 class="card-title">{news.title}</h5>
-//                         <h6 class="card-subtitle mb-2 text-muted">{news.author}</h6>
-//                         <p class="card-text">{news.description}</p>
-//                         <NewsModal value={news.description}/>
-//                       </div>
-//                 </div>
-//             ))}
-//         </div>
-//     )
-// };
 
 export default News;
 
