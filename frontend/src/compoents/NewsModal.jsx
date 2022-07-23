@@ -3,14 +3,12 @@ import { Modal, Button } from "react-bootstrap";
 
 function NewsModal(value) {
   let text =value;
-  console.log(value)
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   
     return (
-        <div>
+      <div>
         <button variant="primary" className="btn btn-success" onClick={handleShow}>
           View more
         </button>
@@ -29,7 +27,7 @@ function NewsModal(value) {
             </Button>
           </Modal.Footer>
         </Modal>
-        </div>
+      </div>
     );
 }
 

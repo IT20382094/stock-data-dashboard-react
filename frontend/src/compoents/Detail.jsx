@@ -1,6 +1,5 @@
 import React from 'react';
 import Chart from './Chart';
-import Item from './Item';
 import {useParams} from 'react-router-dom';
 
 export default function Detail() {
