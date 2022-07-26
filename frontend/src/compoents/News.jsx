@@ -1,5 +1,4 @@
-import React,{useEffect, useState} from 'react'
-import NewsModal from './NewsModal';
+import React,{useEffect, useState} from 'react';
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -22,12 +21,15 @@ export default function News() {
   return(
   <div>
     {news&&news.map((newss) =>{
-      return <div className="card">
+      return <div style={{marginBottom:"40px"}} className="card">
         <div className="card-body">
           <h5 className="card-title">{newss.headline}</h5>
           <h6 className="card-subtitle mb-2 text-muted">{newss.author}</h6>
           <p className="card-text">{newss.created_at}</p>
-          <NewsModal value={newss.headline}/>
+          <p className="card-text">{newss.summary}</p>
+          <button variant="primary" style={{padding:"10px 70px", borderRadius:"20px"}} className="btn btn-success" onClick={() => window.open(newss.url)}>
+            View more
+          </button>
         </div>
       </div>
     })

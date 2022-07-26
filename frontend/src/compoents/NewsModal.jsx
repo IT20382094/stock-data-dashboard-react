@@ -18,7 +18,7 @@ function NewsModal(value) {
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src='aaa.jpg'></img>
+            <img src='stock.png'></img>
             <br/>
             {text.value}</Modal.Body>
           <Modal.Footer>

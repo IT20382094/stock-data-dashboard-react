@@ -5,8 +5,10 @@ import News from './News';
 function Stock() {
 
   return (
-    <div>
-        <h1 style={{color: "red", padding: "40px", fontSize:"80px",marginBottom:"50px", backgroundColor: "lightblue"}}>Welcome To Stock Dashboard</h1>
+    <div style={{
+        backgroundColor: "gray"
+      }}>
+        <h1 style={{color: "black", padding: "40px", fontSize:"80px",marginBottom:"50px"}}>Welcome To Stock Dashboard</h1>
         <div className='row'>
         <div className='col-8'>
             <h1>What About Today ?</h1>
@@ -19,20 +21,15 @@ function Stock() {
         </div>
         
         <div className='row'>
-            <div className='col-8'>
+            <div style={{paddingLeft:"40px"}} className='col-8'>
                 <Card/>
                 <br/>
             </div>
-            {/* <div className='col-2'>
-                <Card title="Ethereum" amount="16USD"/>
-            </div>
-            <div className='col-2'>
-                <Card title="Ripple" amount="20USD"/>
-            </div>
-            <div className='col-2'>
-                <Card title="Litecoin" amount="5USD"/>
+            
+            {/* <div className='col-1'>
+            <view style={{height: '100%',width:'20px', backgroundColor: '#909090'}}></view>
             </div> */}
-            <div className='col-4'>
+            <div style={{paddingRight:"40px"}}className='col-4'>
                 <News/>
             </div> 
         </div>
