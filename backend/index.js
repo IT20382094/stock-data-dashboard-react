@@ -66,7 +66,8 @@ app.get("/cryptos", async (req, res) => {
 
 app.get("/cryptodata", async (req, res) => {
   try {
-    const response = await fetch("https://data.alpaca.markets/v1beta2/crypto/bars?symbols=DOGE/USD&timeframe=1Hour",{method: 'GET', headers:{'APCA-API-KEY-ID': 'PKX03IU2OAI9T2FA9PLD','APCA-API-SECRET-KEY':'9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ'}});
+    const { id } = req.params;
+    const response = await fetch("https://data.alpaca.markets/v1beta2/crypto/bars?symbols="+DOGE/USD+"&timeframe=1Min",{method: 'GET', headers:{'APCA-API-KEY-ID': 'PKX03IU2OAI9T2FA9PLD','APCA-API-SECRET-KEY':'9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ'}});
     const jsonData = await response.json();
 
     res.json(jsonData);

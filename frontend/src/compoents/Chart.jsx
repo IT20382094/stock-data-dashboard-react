@@ -1,77 +1,130 @@
-import React, { Component } from 'react';
-import Plot from 'react-plotly.js';
+import React, { useState, useEffect } from 'react';
+import { Line } from 'react-chartjs-2';
+import '../App.css';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
-class Chart extends Component {
-	render(){
-		return (
-			<Plot 
-				data={[
-					{
-						x: ['11/07/2020','11/25/2020','12/01/2020'],
-						y: [200, 140, 312],
-						type: 'scatter'
-					}
-				]}
-				layout={{width: 1000, height: 500}}
-			/>
-		)
-	}
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
+function ChartL() {
+  const [details0, setDetails0] = useState([]);
+  const [details1, setDetails1] = useState([]);
+  const [details2, setDetails2] = useState([]);
+  const [details3, setDetails3] = useState([]);
+  const [details4, setDetails4] = useState([]);
+  const [details5, setDetails5] = useState([]);
+  const [details6, setDetails6] = useState([]);
+  const [details7, setDetails7] = useState([]);
+  const [details8, setDetails8] = useState([]);
+  const [details9, setDetails9] = useState([]);
+
+  const getDetails = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/cryptodata');
+      const jsonData = await response.json();
+      // console.log(jsonData['bars']['DOGE/USD'][1]);
+      setDetails0(
+        jsonData['bars']['DOGE/USD'][0] != undefined &&
+          jsonData['bars']['DOGE/USD'][0]
+      );
+      setDetails1(
+        jsonData['bars']['DOGE/USD'][1] != undefined &&
+          jsonData['bars']['DOGE/USD'][1]
+      );
+      setDetails2(
+        jsonData['bars']['DOGE/USD'][2] != undefined &&
+          jsonData['bars']['DOGE/USD'][2]
+      );
+      setDetails3(
+        jsonData['bars']['DOGE/USD'][3] != undefined &&
+          jsonData['bars']['DOGE/USD'][3]
+      );
+      setDetails4(
+        jsonData['bars']['DOGE/USD'][4] != undefined &&
+          jsonData['bars']['DOGE/USD'][4]
+      );
+      setDetails5(
+        jsonData['bars']['DOGE/USD'][5] != undefined &&
+          jsonData['bars']['DOGE/USD'][5]
+      );
+      setDetails6(
+        jsonData['bars']['DOGE/USD'][6] != undefined &&
+          jsonData['bars']['DOGE/USD'][6]
+      );
+      setDetails7(
+        jsonData['bars']['DOGE/USD'][7] != undefined &&
+          jsonData['bars']['DOGE/USD'][7]
+      );
+      setDetails8(
+        jsonData['bars']['DOGE/USD'][8] != undefined &&
+          jsonData['bars']['DOGE/USD'][8]
+      );
+      setDetails9(
+        jsonData['bars']['DOGE/USD'][9] != undefined &&
+          jsonData['bars']['DOGE/USD'][9]
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
+  const data = {
+    labels: [
+      details0.t,
+      details1.t,
+      details2.t,
+      details3.t,
+      details4.t,
+      details5.t,
+      details6.t,
+      details6.t,
+      details8.t,
+      details9.t,
+    ],
+    datasets: [
+      {
+        label: 'Average Price',
+        data: [
+          details0.vw,
+          details1.vw,
+          details2.vw,
+          details3.vw,
+          details4.vw,
+          details5.vw,
+          details6.vw,
+          details7.vw,
+          details8.vw,
+          details9.vw,
+        ],
+        borderColor: ['rgba(54,162,235,0.2)'],
+        backgroundColor: ['rgba(54,162,235,0.2)'],
+        pointBackgoundColor: 'rgba(54,162,235,0.2)',
+        pointBorderColor: 'rgba(54,162,235,0.2)',
+      },
+    ],
+  };
+
+  return <Line data={data} />;
 }
 
-export default Chart;
-
-{/* <div id="reportsChart"></div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-	new ApexCharts(document.querySelector("#reportsChart"), {
-	  series: [{
-		name: 'Sales',
-		data: [31, 40, 28, 51, 42, 82, 56],
-	  }, {
-		name: 'Revenue',
-		data: [11, 32, 45, 32, 34, 52, 41]
-	  }, {
-		name: 'Customers',
-		data: [15, 11, 32, 18, 9, 24, 11]
-	  }],
-	  chart: {
-		height: 350,
-		type: 'area',
-		toolbar: {
-		  show: false
-		},
-	  },
-	  markers: {
-		size: 4
-	  },
-	  colors: ['#4154f1', '#2eca6a', '#ff771d'],
-	  fill: {
-		type: "gradient",
-		gradient: {
-		  shadeIntensity: 1,
-		  opacityFrom: 0.3,
-		  opacityTo: 0.4,
-		  stops: [0, 90, 100]
-		}
-	  },
-	  dataLabels: {
-		enabled: false
-	  },
-	  stroke: {
-		curve: 'smooth',
-		width: 2
-	  },
-	  xaxis: {
-		type: 'datetime',
-		categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-	  },
-	  tooltip: {
-		x: {
-		  format: 'dd/MM/yy HH:mm'
-		},
-	  }
-	}).render();
-  });
-</script> */}
+export default ChartL;
