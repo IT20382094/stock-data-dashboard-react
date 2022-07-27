@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import '../App.css';
+import { useParams } from 'react-router-dom';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -33,51 +34,52 @@ function ChartL() {
   const [details7, setDetails7] = useState([]);
   const [details8, setDetails8] = useState([]);
   const [details9, setDetails9] = useState([]);
+  const {title,title2} = useParams();
 
   const getDetails = async () => {
     try {
-      const response = await fetch('http://localhost:5000/cryptodata');
+      const response = await fetch('http://localhost:5000/cryptodata/'+title+'/'+title2);
       const jsonData = await response.json();
       // console.log(jsonData['bars']['DOGE/USD'][1]);
       setDetails0(
-        jsonData['bars']['DOGE/USD'][0] != undefined &&
-          jsonData['bars']['DOGE/USD'][0]
+        jsonData['bars'][title+'/'+title2][0] != undefined &&
+          jsonData['bars'][title+'/'+title2][0]
       );
       setDetails1(
-        jsonData['bars']['DOGE/USD'][1] != undefined &&
-          jsonData['bars']['DOGE/USD'][1]
+        jsonData['bars'][title+'/'+title2][1] != undefined &&
+          jsonData['bars'][title+'/'+title2][1]
       );
       setDetails2(
-        jsonData['bars']['DOGE/USD'][2] != undefined &&
-          jsonData['bars']['DOGE/USD'][2]
+        jsonData['bars'][title+'/'+title2][2] != undefined &&
+          jsonData['bars'][title+'/'+title2][2]
       );
       setDetails3(
-        jsonData['bars']['DOGE/USD'][3] != undefined &&
-          jsonData['bars']['DOGE/USD'][3]
+        jsonData['bars'][title+'/'+title2][3] != undefined &&
+          jsonData['bars'][title+'/'+title2][3]
       );
       setDetails4(
-        jsonData['bars']['DOGE/USD'][4] != undefined &&
-          jsonData['bars']['DOGE/USD'][4]
+        jsonData['bars'][title+'/'+title2][4] != undefined &&
+          jsonData['bars'][title+'/'+title2][4]
       );
       setDetails5(
-        jsonData['bars']['DOGE/USD'][5] != undefined &&
-          jsonData['bars']['DOGE/USD'][5]
+        jsonData['bars'][title+'/'+title2][5] != undefined &&
+          jsonData['bars'][title+'/'+title2][5]
       );
       setDetails6(
-        jsonData['bars']['DOGE/USD'][6] != undefined &&
-          jsonData['bars']['DOGE/USD'][6]
+        jsonData['bars'][title+'/'+title2][6] != undefined &&
+          jsonData['bars'][title+'/'+title2][6]
       );
       setDetails7(
-        jsonData['bars']['DOGE/USD'][7] != undefined &&
-          jsonData['bars']['DOGE/USD'][7]
+        jsonData['bars'][title+'/'+title2][7] != undefined &&
+          jsonData['bars'][title+'/'+title2][7]
       );
       setDetails8(
-        jsonData['bars']['DOGE/USD'][8] != undefined &&
-          jsonData['bars']['DOGE/USD'][8]
+        jsonData['bars'][title+'/'+title2][8] != undefined &&
+          jsonData['bars'][title+'/'+title2][8]
       );
       setDetails9(
-        jsonData['bars']['DOGE/USD'][9] != undefined &&
-          jsonData['bars']['DOGE/USD'][9]
+        jsonData['bars'][title+'/'+title2][9] != undefined &&
+          jsonData['bars'][title+'/'+title2][9]
       );
     } catch (err) {
       console.log(err.message);

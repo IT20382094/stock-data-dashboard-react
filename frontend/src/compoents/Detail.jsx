@@ -6,13 +6,16 @@ import '../App.css';
 export default function Detail() {
   const [details, setDetails] = useState([]);
   const {title,title2} = useParams();
+  
 
   const getDetails = async () => {
     try {
-      const response = await fetch('http://localhost:5000/cryptodata');
+      const response = await fetch('http://localhost:5000/cryptodata/'+title+'/'+title2);
+
       const jsonData = await response.json();
-      console.log(title);
-      setDetails(jsonData['bars'][{title}][0]);
+      // console.log(title);
+      // console.log(title2);
+      setDetails(jsonData['bars'][title+'/'+title2][0]);
     } catch (err) {
       console.log(err.message);
     }
@@ -95,89 +98,9 @@ export default function Detail() {
               <h3>Number of Trades</h3>
               <h4 className="card-subtitle mb-2 text-muted">{details.n}</h4>
             </div>
-
-            {/* <div className="card-body">
-                <h3>Volume weighted average price</h3>
-                <h4 className="card-subtitle mb-2 text-muted">{details.vw}</h4>
-            </div> */}
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-// export default function Detail() {
-//   const {title} = useParams();
-//   console.log(title);
-//   return (
-//     <div>
-//         <br/>
-//         <br/>
-//         <div className='row'>
-//             <div className='col-9'>
-//                 <Chart/>
-//             </div>
-//             <div className='col-3'>
-//             <div>
-//   <div className="card">
-//     <div className="card-body">
-//         <h4 className="card-subtitle mb-2 text-muted">Name</h4>
-//         <p className="card-text">{title}</p>
-//     </div>
-// </div>
-//     </div>
-//     <div>
-//           <div className="card">
-//             <div className="card-body">
-//                 <h4 className="card-subtitle mb-2 text-muted">Current Value</h4>
-//                 <p className="card-text"></p>
-//             </div>
-//         </div>
-//     </div>
-//     <div>
-//           <div className="card">
-//             <div className="card-body">
-//                 <h4 className="card-subtitle mb-2 text-muted">Open Value</h4>
-//                 <p className="card-text"></p>
-//             </div>
-//         </div>
-//     </div>
-//     <div>
-//           <div className="card">
-//             <div className="card-body">
-//                 <h4 className="card-subtitle mb-2 text-muted">Max Value</h4>
-//                 <p className="card-text"></p>
-//             </div>
-//         </div>
-//     </div>
-//     <div>
-//           <div className="card">
-//             <div className="card-body">
-//                 <h4 className="card-subtitle mb-2 text-muted">Min Value</h4>
-//                 <p className="card-text"></p>
-//             </div>
-//         </div>
-//     </div>
-//     <div>
-//           <div className="card">
-//             <div className="card-body">
-//                 <h4 className="card-subtitle mb-2 text-muted">Volume</h4>
-//                 <p className="card-text"></p>
-//             </div>
-//         </div>
-//     </div>
-//     <div>
-//           <div className="card">
-//             <div className="card-body">
-//                 <h4 className="card-subtitle mb-2 text-muted">Market Cap</h4>
-//                 <p className="card-text"></p>
-//             </div>
-//         </div>
-//     </div>
-//             </div>
-//         </div>
-
-//     </div>
-//   )
-// }
