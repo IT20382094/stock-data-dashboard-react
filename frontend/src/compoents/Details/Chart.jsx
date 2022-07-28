@@ -90,7 +90,7 @@ function ChartL() {
   useEffect(() => {
     const interval = setInterval(() => {
       getDetails();
-      console.log();
+      console.log(details0);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -131,7 +131,7 @@ function ChartL() {
     ],
   };
 
-  return <Line data={data} />;
+  return <Line data = {data} />;
 }
 
 export default ChartL;

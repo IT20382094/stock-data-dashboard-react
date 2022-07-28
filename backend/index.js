@@ -3,19 +3,23 @@ const app = express();
 const cors = require('cors');
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(cors());
 app.use(express.json());
 
+const keyIds = process.env.keyId;
+const secretKeys = process.env.secretKey;
 // instantiate an Alpaca client with your API keys.
 const options = {
-  keyId: 'PKX03IU2OAI9T2FA9PLD',
-  secretKey: '9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ',
+  keyId: keyIds,
+  secretKey: secretKeys,
   paper: true,
 };
 
 //Create instance with Alpaca client in Alpaca trade API
-// const alpaca = new Alpaca(options);
+const alpaca = new Alpaca(options);
 
 app.get('/news', async (req, res) => {
   try {
