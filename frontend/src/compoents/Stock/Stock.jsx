@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Card from './Card';
+import React from 'react';
+import CardBar from './CardBar';
 import News from './News';
 
 function Stock() {
@@ -36,7 +36,7 @@ function Stock() {
 
       <div className="row">
         <div style={{ paddingLeft: '40px' }} className="col-8">
-          <Card />
+          <CardBar/>
           <br />
         </div>
         <div style={{ paddingRight: '40px' }} className="col-4">

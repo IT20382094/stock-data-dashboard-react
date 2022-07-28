@@ -1,7 +1,7 @@
 import './App.css';
-import Stock from './compoents/Stock';
+import Stock from './compoents/Stock/Stock';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Detail from './compoents/Detail';
+import Detail from './compoents/Details/Detail';
 
 function App() {
   return (

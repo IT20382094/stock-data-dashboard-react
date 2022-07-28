@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import ChartL from './Chart';
-import '../App.css';
+import '../../App.css';
+
+
 export default function Detail() {
   const [details, setDetails] = useState([]);
-  const {title,title2} = useParams();
-  
+  const { title, title2 } = useParams();
 
   const getDetails = async () => {
     try {
-      const response = await fetch('http://localhost:5000/cryptodata/'+title+'/'+title2);
+      const response = await fetch(
+        'http://localhost:5000/cryptodata/' + title + '/' + title2
+      );
 
       const jsonData = await response.json();
-      // console.log(title);
-      // console.log(title2);
-      setDetails(jsonData['bars'][title+'/'+title2][0]);
+      setDetails(jsonData['bars'][title + '/' + title2][0]);
     } catch (err) {
       console.log(err.message);
     }
@@ -25,20 +26,19 @@ export default function Detail() {
     getDetails();
   }, []);
 
-
   return (
     <div style={{ backgroundColor: 'Gainsboro' }}>
       <br />
       <br />
       <div className="row">
-        <div className="col-5">
+        <div className="col-7">
           <h1 style={{ textAlign: 'left', paddingLeft: '40px' }}>
-            Average prices
+            Average prices of {title}/{title2}
           </h1>
           <br />
         </div>
         <div className="col-5">
-          <h1>{details.vw}</h1>
+          <h1>Current Price :{details.vw}</h1>
           <br />
         </div>
       </div>

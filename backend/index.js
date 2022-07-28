@@ -1,54 +1,29 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const pool = require('./db');
-const { request } = require('express');
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 const fetch = require('node-fetch');
-const socketIO = require('socket.io');
-const http = require('http');
-let server = http.createServer(app);
-let io = socketIO(server);
 
 app.use(cors());
 app.use(express.json());
 
-// make connection with user from server side
-io.on('connection', (socket) => {
-  console.log('New user connected');
-  //emit message from server to user
-  socket.emit('newMessage', {
-    from: 'jen@mds',
-    text: 'hepppp',
-    createdAt: 123,
-  });
-
-  // listen for message from user
-  socket.on('createMessage', (newMessage) => {
-    console.log('newMessage', newMessage);
-  });
-
-  // when server disconnects from user
-  socket.on('disconnect', () => {
-    console.log('disconnected from user');
-  });
-});
-
+// instantiate an Alpaca client with your API keys.
 const options = {
   keyId: 'PKX03IU2OAI9T2FA9PLD',
   secretKey: '9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ',
   paper: true,
 };
 
-const alpaca = new Alpaca(options);
+//Create instance with Alpaca client in Alpaca trade API
+// const alpaca = new Alpaca(options);
 
 app.get('/news', async (req, res) => {
   try {
     const response = await fetch('https://data.alpaca.markets/v1beta1/news', {
       method: 'GET',
       headers: {
-        'APCA-API-KEY-ID': 'PKX03IU2OAI9T2FA9PLD',
-        'APCA-API-SECRET-KEY': '9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ',
+        'APCA-API-KEY-ID': options.keyId,
+        'APCA-API-SECRET-KEY': options.secretKey,
       },
     });
     const jsonData = await response.json();
@@ -66,8 +41,8 @@ app.get('/cryptos', async (req, res) => {
       {
         method: 'GET',
         headers: {
-          'APCA-API-KEY-ID': 'PKX03IU2OAI9T2FA9PLD',
-          'APCA-API-SECRET-KEY': '9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ',
+          'APCA-API-KEY-ID': options.keyId,
+          'APCA-API-SECRET-KEY': options.secretKey,
         },
       }
     );
@@ -83,8 +58,6 @@ app.get('/cryptodata/:id/:id2', async (req, res) => {
   try {
     const { id } = req.params;
     const { id2 } = req.params;
-    console.log(id);
-    console.log(id2);
     const response = await fetch(
       'https://data.alpaca.markets/v1beta2/crypto/bars?symbols=' +
         id +
@@ -94,8 +67,8 @@ app.get('/cryptodata/:id/:id2', async (req, res) => {
       {
         method: 'GET',
         headers: {
-          'APCA-API-KEY-ID': 'PKX03IU2OAI9T2FA9PLD',
-          'APCA-API-SECRET-KEY': '9RqUsxh7AuAoaGocS3NQO4m4JF8fwTAiuZ0NtnFZ',
+          'APCA-API-KEY-ID': options.keyId,
+          'APCA-API-SECRET-KEY': options.secretKey,
         },
       }
     );
