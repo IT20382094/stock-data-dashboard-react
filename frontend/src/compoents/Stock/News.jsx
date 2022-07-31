@@ -24,12 +24,12 @@ export default function News() {
         news.map((newsItems) => {
           return (
             <NewsItem
-              images = {newsItems.images}
-              headline = {newsItems.headline}
-              summary = {newsItems.summary}
-              author = {newsItems.author}
-              created_at = {newsItems.created_at}
-              url = {newsItems.url}
+              images={newsItems.images}
+              headline={newsItems.headline}
+              summary={newsItems.summary}
+              author={newsItems.author}
+              created_at={newsItems.created_at}
+              url={newsItems.url}
             />
           );
         })}

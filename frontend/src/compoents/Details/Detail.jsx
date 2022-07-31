@@ -6,20 +6,58 @@ import '../../App.css';
 export default function Detail() {
   const [details, setDetails] = useState([]);
   const { title, title2 } = useParams();
-  const A1 = { backgroundColor: 'Gainsboro' };
-  const A2 = { textAlign: 'left', paddingLeft: '40px' };
+  const A2 = {
+    textAlign: 'left',
+    paddingLeft: '40px',
+    fontFamily: 'Readex Pro',
+    fontWeight: '500',
+    fontSize: '30px',
+  };
   const A3 = {
-    backgroundColor: '#303030',
-    width: '1260px',
+    width: '900px',
+    height: '500px',
     marginBottom: '40px',
     marginLeft: '40px',
+    backgroundColor: '#FFFFFF',
+    border: '1px solid #000000',
   };
   const A4 = {
     marginBottom: '40px',
     marginRight: '40px',
     marginLeft: '40px',
-    boxShadow: '8px 8px 8px 0',
-    columns: '2 auto',
+    width: '361px',
+    height: '432px',
+    backgroundColor: '#E4EDEC',
+    borderRadius: '8px',
+  };
+  const A5 = {
+    fontFamily: 'Readex Pro',
+    fontSize: '24px',
+    fontWeight: 'Regular',
+    marginBottom: '35px',
+    textAlign: 'left',
+  };
+  const A6 = {
+    fontFamily: 'Readex Pro',
+    fontSize: '20px',
+    fontWeight: 'Regular',
+    marginBottom: '35px',
+    textAlign: 'left',
+  };
+  const A7 = {
+    fontFamily: 'Readex Pro',
+    fontSize: '20px',
+    fontWeight: 'Regular',
+    color: '#737373',
+    textAlign: 'right',
+  };
+
+  const A8 = {
+    fontFamily: 'Readex Pro',
+    fontSize: '24px',
+    fontWeight: 'Regular',
+    marginBottom: '35px',
+    textAlign: 'right',
   };
 
   const getDetails = async () => {
@@ -29,70 +67,102 @@ export default function Detail() {
       );
 
       const jsonData = await response.json();
-      setDetails(jsonData['bars'][title + '/' + title2][0]);
+      setDetails(
+        jsonData['bars'][title + '/' + title2][
+          jsonData['bars'][title + '/' + title2].length - 1
+        ]
+      );
     } catch (err) {
       console.log(err.message);
     }
   };
 
   useEffect(() => {
-    getDetails();
+    const interval = setInterval(() => {
+      getDetails();
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div style = {A1}>
+    <div>
       <br />
       <br />
-      <div className = "row">
-        <div className = "col-7">
-          <h1 style = {A2}>
+      <div className="row">
+        <div className="col-7">
+          <h1 style={A2}>
             Average prices of {title}/{title2}
           </h1>
           <br />
         </div>
-        <div className = "col-5">
-          <h1>Current Price :{details.vw}</h1>
-          <br />
-        </div>
       </div>
-      <div className = "row">
-        <div className = "col-8">
-          <div style={A3} className = "card">
-            <div className = "chart">
+      <div className="row">
+        <div className="col-8">
+          <div style={A3} className="card">
+            <div className="chart">
               <ChartL />
             </div>
           </div>
         </div>
-        <div className = "col-4">
-          <div style={A4} className = "card">
-            <div className = "card-body">
-              <h3>Open Price</h3>
-              <h4 className = "card-subtitle mb-2 text-muted">{details.o}</h4>
-            </div>
-
-            <div className = "card-body">
-              <h3>High Price</h3>
-              <h4 className = "card-subtitle mb-2 text-muted">{details.h}</h4>
-            </div>
-
-            <div className = "card-body">
-              <h3>Low Price</h3>
-              <h4 className = "card-subtitle mb-2 text-muted">{details.l}</h4>
-            </div>
-
-            <div className = "card-body">
-              <h3>Close Price</h3>
-              <h4 className = "card-subtitle mb-2 text-muted">{details.c}</h4>
-            </div>
-
-            <div className = "card-body">
-              <h3>Volume</h3>
-              <h4 className = "card-subtitle mb-2 text-muted">{details.v}</h4>
-            </div>
-
-            <div className = "card-body">
-              <h3>Number of Trades</h3>
-              <h4 className = "card-subtitle mb-2 text-muted">{details.n}</h4>
+        <div className="col-4">
+          <div style={A4} className="card">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-6">
+                  <h1 style={A5}>Current Average Price</h1>
+                </div>
+                <div className="col-6">
+                  <h1 style={A8}>{details.vw}</h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6">
+                  <h1 style={A6}>Open Price</h1>
+                </div>
+                <div className="col-6">
+                  <h1 style={A7}>{details.o}</h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6">
+                  <h1 style={A6}>High Price</h1>
+                </div>
+                <div className="col-6">
+                  <h1 style={A7}>{details.h}</h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6">
+                  <h1 style={A6}>Low Price</h1>
+                </div>
+                <div className="col-6">
+                  <h1 style={A7}>{details.l}</h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6">
+                  <h1 style={A6}>Close Price</h1>
+                </div>
+                <div className="col-6">
+                  <h1 style={A7}>{details.c}</h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-6">
+                  <h1 style={A6}>Volume</h1>
+                </div>
+                <div className="col-6">
+                  <h1 style={A7}>{details.v}</h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-7">
+                  <h1 style={A6}>Number of Trades</h1>
+                </div>
+                <div className="col-5">
+                  <h1 style={A7}>{details.n}</h1>
+                </div>
+              </div>
             </div>
           </div>
         </div>

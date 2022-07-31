@@ -19,13 +19,13 @@ export default function CardBar() {
   }, []);
 
   return (
-    <div className = "row">
+    <div className="row">
       {card &&
         card.map((cardItems) => {
           return (
             <Card
-              symbol = {cardItems.symbol}
-              price_increment = {cardItems.price_increment}
+              symbol={cardItems.symbol}
+              price_increment={cardItems.price_increment}
             />
           );
         })}

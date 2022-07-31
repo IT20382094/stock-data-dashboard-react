@@ -24,16 +24,7 @@ ChartJS.register(
 );
 
 function ChartL() {
-  const [details0, setDetails0] = useState([]);
-  const [details1, setDetails1] = useState([]);
-  const [details2, setDetails2] = useState([]);
-  const [details3, setDetails3] = useState([]);
-  const [details4, setDetails4] = useState([]);
-  const [details5, setDetails5] = useState([]);
-  const [details6, setDetails6] = useState([]);
-  const [details7, setDetails7] = useState([]);
-  const [details8, setDetails8] = useState([]);
-  const [details9, setDetails9] = useState([]);
+  const [details, setDetails] = useState([]);
   const { title, title2 } = useParams();
 
   const getDetails = async () => {
@@ -42,87 +33,31 @@ function ChartL() {
         'http://localhost:5000/cryptodata/' + title + '/' + title2
       );
       const jsonData = await response.json();
-      setDetails0(
-        jsonData['bars'][title + '/' + title2][0] != undefined &&
-          jsonData['bars'][title + '/' + title2][0]
-      );
-      setDetails1(
-        jsonData['bars'][title + '/' + title2][1] != undefined &&
-          jsonData['bars'][title + '/' + title2][1]
-      );
-      setDetails2(
-        jsonData['bars'][title + '/' + title2][2] != undefined &&
-          jsonData['bars'][title + '/' + title2][2]
-      );
-      setDetails3(
-        jsonData['bars'][title + '/' + title2][3] != undefined &&
-          jsonData['bars'][title + '/' + title2][3]
-      );
-      setDetails4(
-        jsonData['bars'][title + '/' + title2][4] != undefined &&
-          jsonData['bars'][title + '/' + title2][4]
-      );
-      setDetails5(
-        jsonData['bars'][title + '/' + title2][5] != undefined &&
-          jsonData['bars'][title + '/' + title2][5]
-      );
-      setDetails6(
-        jsonData['bars'][title + '/' + title2][6] != undefined &&
-          jsonData['bars'][title + '/' + title2][6]
-      );
-      setDetails7(
-        jsonData['bars'][title + '/' + title2][7] != undefined &&
-          jsonData['bars'][title + '/' + title2][7]
-      );
-      setDetails8(
-        jsonData['bars'][title + '/' + title2][8] != undefined &&
-          jsonData['bars'][title + '/' + title2][8]
-      );
-      setDetails9(
-        jsonData['bars'][title + '/' + title2][9] != undefined &&
-          jsonData['bars'][title + '/' + title2][9]
-      );
+      setDetails(jsonData['bars'][title + '/' + title2]);
     } catch (err) {
       console.log(err.message);
     }
   };
 
+  const last10 = details.slice(-10);
+
   useEffect(() => {
     const interval = setInterval(() => {
       getDetails();
-      console.log(details0);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
   const data = {
-    labels: [
-      details0.t,
-      details1.t,
-      details2.t,
-      details3.t,
-      details4.t,
-      details5.t,
-      details6.t,
-      details6.t,
-      details8.t,
-      details9.t,
-    ],
+    labels: last10?.map((item) => {
+      return item.t;
+    }),
     datasets: [
       {
         label: 'Average Price',
-        data: [
-          details0.vw,
-          details1.vw,
-          details2.vw,
-          details3.vw,
-          details4.vw,
-          details5.vw,
-          details6.vw,
-          details7.vw,
-          details8.vw,
-          details9.vw,
-        ],
+        data: last10?.map((item) => {
+          return item.vw;
+        }),
         borderColor: ['rgba(54,162,235,0.2)'],
         backgroundColor: ['rgba(54,162,235,0.2)'],
         pointBackgoundColor: 'rgba(54,162,235,0.2)',
@@ -131,7 +66,7 @@ function ChartL() {
     ],
   };
 
-  return <Line data = {data} />;
+  return <Line data={data} />;
 }
 
 export default ChartL;
