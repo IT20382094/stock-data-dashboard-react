@@ -25,7 +25,11 @@ ChartJS.register(
 
 function ChartL() {
   const detailData = detailContainer.useContainer();
-  const last10 = detailData.slice(-10);
+
+//   const set = new Set(['a', 'b', 'c']);
+// const result2 = Array.isArray(set) ? set.slice(2) : [];
+
+  const last10 = Array.isArray(detailData)? detailData.slice(-10) : [];
 
   const data = {
     labels: last10?.map((item) => {

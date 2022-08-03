@@ -61,7 +61,7 @@ export default function Detail() {
     textAlign: 'right',
   };
 
-  const last = commonData.slice(-1);
+  const last = Array.isArray(commonData)? commonData.slice(-1) : [];
 
   return (
     <div>
