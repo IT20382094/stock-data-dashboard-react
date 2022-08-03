@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Card({ symbol, price_increment }) {
+export default function Card({ symbol, price_increment }) {  
   const A1 = {
     marginBottom: '40px',
     width: '180px',

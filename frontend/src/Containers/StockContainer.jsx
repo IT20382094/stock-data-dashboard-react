@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
 
-function CommonStock() {
+function UseStock() {
   const [card, setCard] = useState([]);
 
   const getCard = async () => {
@@ -19,6 +19,7 @@ function CommonStock() {
   }, []);
 
   return card;
+
 }
 
-export const commonStock = createContainer(CommonStock);
+export const stockContainer = createContainer(UseStock);

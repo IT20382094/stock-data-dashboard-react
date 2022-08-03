@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
+import { commonStock } from './StockContainer';
 
-function CommonNews() {
+function UseNews() {
     const [news, setNews] = useState([]);
 
     const getNews = async () => {
@@ -21,4 +22,4 @@ function CommonNews() {
   return news;
 }
 
-export const commonNews = createContainer(CommonNews);
+export const newsContainer = createContainer(UseNews);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import '../../App.css';
-import { commonContainer } from '../Containers/CommonDetails';
+import { detailContainer } from '../../Containers/DetailContainer';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,8 +24,8 @@ ChartJS.register(
 );
 
 function ChartL() {
-  const commonData = commonContainer.useContainer();
-  const last10 = commonData.slice(-10);
+  const detailData = detailContainer.useContainer();
+  const last10 = detailData.slice(-10);
 
   const data = {
     labels: last10?.map((item) => {

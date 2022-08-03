@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
-import { commonNews } from '../Containers/CommonNews';
+import { newsContainer } from '../../Containers/NewsContainer';
 
 export default function News() {
-  const news = commonNews.useContainer();
+  const news = newsContainer.useContainer();
 
 
   return (

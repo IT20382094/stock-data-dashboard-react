@@ -2,11 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import ChartL from './Chart';
 import '../../App.css';
-import { commonContainer } from '../Containers/CommonDetails';
+import { detailContainer } from '../../Containers/DetailContainer';
 
 export default function Detail() {
   const { title, title2 } = useParams();
-  const commonData = commonContainer.useContainer();
+  const commonData = detailContainer.useContainer();
   const A2 = {
     textAlign: 'left',
     paddingLeft: '40px',

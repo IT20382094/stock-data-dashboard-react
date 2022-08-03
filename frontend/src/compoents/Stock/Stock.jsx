@@ -44,7 +44,7 @@ function Stock() {
 
   const date = new Date();
   const time = date.getHours;
-
+  
   return (
     <div style={A2}>
       {time >= 12 ? (

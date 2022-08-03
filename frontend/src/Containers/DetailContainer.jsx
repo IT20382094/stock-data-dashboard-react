@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createContainer } from 'unstated-next';
 import { useParams } from 'react-router-dom';
 
-function CommonState() {
+function useDetails() {
   const { title, title2 } = useParams();
 
   const [details, setDetails] = useState([]);
@@ -32,4 +32,4 @@ function CommonState() {
   return details;
 }
 
-export const commonContainer = createContainer(CommonState);
+export const detailContainer = createContainer(useDetails);
