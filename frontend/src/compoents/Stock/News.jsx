@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
+import { commonNews } from '../Containers/CommonNews';
 
 export default function News() {
-  const [news, setNews] = useState([]);
+  const news = commonNews.useContainer();
 
-  const getNews = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/news');
-      const jsonData = await response.json();
-      setNews(jsonData.news);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getNews();
-  }, []);
 
   return (
     <div>

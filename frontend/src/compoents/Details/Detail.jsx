@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import ChartL from './Chart';
 import '../../App.css';
+import { commonContainer } from '../Containers/CommonDetails';
 
 export default function Detail() {
   const { title, title2 } = useParams();
+  const commonData = commonContainer.useContainer();
   const A2 = {
     textAlign: 'left',
     paddingLeft: '40px',
@@ -59,31 +61,7 @@ export default function Detail() {
     textAlign: 'right',
   };
 
-  const [details, setDetails] = useState([]);
-
-  const getDetails = async () => {
-    try {
-      const response = await fetch(
-        'http://localhost:5000/cryptodata/' + title + '/' + title2
-      );
-      const jsonData = await response.json();
-      setDetails(
-        jsonData['bars'][title + '/' + title2] != undefined &&
-          jsonData['bars'][title + '/' + title2]
-      );
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  const last = details.slice(-1);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getDetails();
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const last = commonData.slice(-1);
 
   return (
     <div>
@@ -101,7 +79,7 @@ export default function Detail() {
         <div className="col-8">
           <div style={A3} className="card">
             <div className="chart">
-              <ChartL details={details} />
+              <ChartL/>
             </div>
           </div>
         </div>

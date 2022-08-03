@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../images/img.png';
 
 function NewsItem({ images, headline, summary, author, created_at, url }) {
+
   const A1 = {
     marginRight: '40px',
     marginBottom: '40px',
