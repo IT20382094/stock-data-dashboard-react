@@ -4,7 +4,6 @@ import ChartL from './Chart';
 import '../../App.css';
 
 export default function Detail() {
-  const [details, setDetails] = useState([]);
   const { title, title2 } = useParams();
   const A2 = {
     textAlign: 'left',
@@ -26,7 +25,7 @@ export default function Detail() {
     marginRight: '40px',
     marginLeft: '40px',
     width: '361px',
-    height: '432px',
+    height: '460px',
     backgroundColor: '#E4EDEC',
     borderRadius: '8px',
   };
@@ -60,22 +59,24 @@ export default function Detail() {
     textAlign: 'right',
   };
 
+  const [details, setDetails] = useState([]);
+
   const getDetails = async () => {
     try {
       const response = await fetch(
         'http://localhost:5000/cryptodata/' + title + '/' + title2
       );
-
       const jsonData = await response.json();
       setDetails(
-        jsonData['bars'][title + '/' + title2][
-          jsonData['bars'][title + '/' + title2].length - 1
-        ]
+        jsonData['bars'][title + '/' + title2] != undefined &&
+          jsonData['bars'][title + '/' + title2]
       );
     } catch (err) {
       console.log(err.message);
     }
   };
+
+  const last = details.slice(-1);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -100,71 +101,75 @@ export default function Detail() {
         <div className="col-8">
           <div style={A3} className="card">
             <div className="chart">
-              <ChartL />
+              <ChartL details={details} />
             </div>
           </div>
         </div>
         <div className="col-4">
-          <div style={A4} className="card">
-            <div className="card-body">
-              <div className="row">
-                <div className="col-6">
-                  <h1 style={A5}>Current Average Price</h1>
-                </div>
-                <div className="col-6">
-                  <h1 style={A8}>{details.vw}</h1>
+          {last?.map((lastItem) => {
+            return (
+              <div style={A4} className="card">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-6">
+                      <h1 style={A5}>Current Average Price</h1>
+                    </div>
+                    <div className="col-6">
+                      <h1 style={A8}>{lastItem.vw}</h1>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      <h1 style={A6}>Open Price</h1>
+                    </div>
+                    <div className="col-6">
+                      <h1 style={A7}>{lastItem.o}</h1>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      <h1 style={A6}>High Price</h1>
+                    </div>
+                    <div className="col-6">
+                      <h1 style={A7}>{lastItem.h}</h1>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      <h1 style={A6}>Low Price</h1>
+                    </div>
+                    <div className="col-6">
+                      <h1 style={A7}>{lastItem.l}</h1>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      <h1 style={A6}>Close Price</h1>
+                    </div>
+                    <div className="col-6">
+                      <h1 style={A7}>{lastItem.c}</h1>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      <h1 style={A6}>Volume</h1>
+                    </div>
+                    <div className="col-6">
+                      <h1 style={A7}>{lastItem.v}</h1>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-7">
+                      <h1 style={A6}>Number of Trades</h1>
+                    </div>
+                    <div className="col-5">
+                      <h1 style={A7}>{lastItem.n}</h1>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col-6">
-                  <h1 style={A6}>Open Price</h1>
-                </div>
-                <div className="col-6">
-                  <h1 style={A7}>{details.o}</h1>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-6">
-                  <h1 style={A6}>High Price</h1>
-                </div>
-                <div className="col-6">
-                  <h1 style={A7}>{details.h}</h1>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-6">
-                  <h1 style={A6}>Low Price</h1>
-                </div>
-                <div className="col-6">
-                  <h1 style={A7}>{details.l}</h1>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-6">
-                  <h1 style={A6}>Close Price</h1>
-                </div>
-                <div className="col-6">
-                  <h1 style={A7}>{details.c}</h1>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-6">
-                  <h1 style={A6}>Volume</h1>
-                </div>
-                <div className="col-6">
-                  <h1 style={A7}>{details.v}</h1>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-7">
-                  <h1 style={A6}>Number of Trades</h1>
-                </div>
-                <div className="col-5">
-                  <h1 style={A7}>{details.n}</h1>
-                </div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -13,14 +13,14 @@ export default function Card({ symbol, price_increment }) {
     color: 'LightGray',
   };
   const A2 = {
-    fontFamily: 'Readex Pro',
+    fontFamily: 'Poppins',
     fontSize: '16px',
     fontWeight: 'medium',
     color: '#1F1F1F',
     marginTop: '10px',
   };
   const A3 = {
-    fontFamily: 'Readex Pro',
+    fontFamily: 'Poppins',
     fontSize: '16px',
     fontWeight: 'Regular',
     color: '#979797',

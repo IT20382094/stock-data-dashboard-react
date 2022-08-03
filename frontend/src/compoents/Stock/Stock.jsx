@@ -8,7 +8,7 @@ function Stock() {
     paddingLeft: '40px',
     textAlign: 'left',
     fontSize: '48px',
-    fontFamily: 'Readex Pro',
+    fontFamily: 'Poppins',
     fontWeight: '600',
     marginBottom: '40px',
   };
@@ -18,14 +18,14 @@ function Stock() {
   const A3 = {
     textAlign: 'left',
     paddingLeft: '40px',
-    fontFamily: 'Reader Pro',
+    fontFamily: 'Poppins',
     fontSize: '24px',
     color: '#1F1F1F',
     fontWeight: '400',
   };
   const A4 = {
     textAlign: 'left',
-    fontFamily: 'Reader Pro',
+    fontFamily: 'Poppins',
     fontSize: '24px',
     color: '#1F1F1F',
     fontWeight: '400',
@@ -35,7 +35,7 @@ function Stock() {
   const A7 = {
     fontSize: '24px',
     color: '#104873',
-    fontFamily: 'Readex Pro',
+    fontFamily: 'Poppins',
     textAlign: 'left',
     paddingLeft: '40px',
     paddingTop: '30px',

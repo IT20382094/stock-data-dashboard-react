@@ -23,30 +23,9 @@ ChartJS.register(
   Legend
 );
 
-function ChartL() {
-  const [details, setDetails] = useState([]);
-  const { title, title2 } = useParams();
-
-  const getDetails = async () => {
-    try {
-      const response = await fetch(
-        'http://localhost:5000/cryptodata/' + title + '/' + title2
-      );
-      const jsonData = await response.json();
-      setDetails(jsonData['bars'][title + '/' + title2]);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
+function ChartL({ details }) {
+  // console.log(details)
   const last10 = details.slice(-10);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getDetails();
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const data = {
     labels: last10?.map((item) => {
