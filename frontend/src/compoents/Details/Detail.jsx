@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ChartL from './Chart';
 import '../../App.css';
 import { detailContainer } from '../../Containers/DetailContainer';
@@ -61,7 +61,7 @@ export default function Detail() {
     textAlign: 'right',
   };
 
-  const last = Array.isArray(commonData)? commonData.slice(-1) : [];
+  const last = Array.isArray(commonData) ? commonData.slice(-1) : [];
 
   return (
     <div>
@@ -70,6 +70,7 @@ export default function Detail() {
       <div className="row">
         <div className="col-7">
           <h1 style={A2}>
+          <Link to={'/'} ><i class="bi bi-arrow-left-circle mr-2 text-dark"></i></Link>
             Average prices of {title}/{title2}
           </h1>
           <br />
@@ -79,7 +80,7 @@ export default function Detail() {
         <div className="col-8">
           <div style={A3} className="card">
             <div className="chart">
-              <ChartL/>
+              <ChartL />
             </div>
           </div>
         </div>

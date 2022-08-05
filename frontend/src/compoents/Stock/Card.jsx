@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../../App.css';
+import Style from 'style-it';
 
-export default function Card({ symbol, price_increment }) {  
+export default function Card({ symbol, price_increment }) {
   const A1 = {
     marginBottom: '40px',
     width: '180px',
@@ -11,7 +13,11 @@ export default function Card({ symbol, price_increment }) {
     backgroundColor: '#FFFFFF',
     borderRadius: '5px',
     color: 'LightGray',
+    '&:hover': {
+      backgroundColor: 'black',
+    },
   };
+
   const A2 = {
     fontFamily: 'Poppins',
     fontSize: '16px',
@@ -27,13 +33,23 @@ export default function Card({ symbol, price_increment }) {
   };
 
   return (
-    <Link to={'/Detail/' + symbol}>
-      <div style={A1} className="card">
-        <div className="card-body">
-          <h3 style={A2}>{symbol}</h3>
-          <h5 style={A3}>{price_increment}</h5>
-        </div>
+    <Style>
+      {`
+.intro:hover{
+  transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+opacity:'0.8'
+}
+    `}
+
+      <div style={A1} className="intro">
+        <Link to={'/Detail/' + symbol}>
+          <div className="card-body">
+            <h3 style={A2}>{symbol}</h3>
+            <h5 style={A3}>{price_increment}</h5>
+          </div>
+        </Link>
       </div>
-    </Link>
+    </Style>
   );
 }

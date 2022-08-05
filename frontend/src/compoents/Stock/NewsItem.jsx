@@ -9,7 +9,7 @@ function NewsItem({ images, headline, summary, author, created_at, url }) {
     backgroundColor: '#FFFFFF',
     boxShadow: '0px 0px 20px',
     borderRadius: '5px',
-    color: 'LightGray',
+    color: 'LightGray'
   };
   const A2 = {
     fontSize: '16px',
@@ -24,6 +24,7 @@ function NewsItem({ images, headline, summary, author, created_at, url }) {
     fontSize: '16px',
     fontWeight: 'Medium',
     color: 'black',
+    paddingLeft:'10px'
   };
   const A5 = {
     textAlign: 'left',
@@ -31,6 +32,7 @@ function NewsItem({ images, headline, summary, author, created_at, url }) {
     color: '#979797',
     fontSize: '12px',
     fontWeight: 'Regular',
+    paddingLeft:'10px'
   };
   const A6 = {
     textAlign: 'left',
@@ -49,7 +51,7 @@ function NewsItem({ images, headline, summary, author, created_at, url }) {
 
   return (
     <div style={A1} className="card">
-      <div className="card-body">
+      <div className="card-body pb-0">
         <div className="row">
           <div className="col-3">
             {images[0] != undefined && (
@@ -65,12 +67,12 @@ function NewsItem({ images, headline, summary, author, created_at, url }) {
           </div>
         </div>
         <br />
-        <div className="row">
-          <div className="col-8">
+        <div className="row d-flex flex-wrap">
+          <div className="col">
             <h6 style={A6}>{author}</h6>
             <p style={A7}>{created_at}</p>
           </div>
-          <div className="col-4" style={A3}>
+          <div className="col" style={A3}>
             <button
               style={A2}
               className="btn btn-link"

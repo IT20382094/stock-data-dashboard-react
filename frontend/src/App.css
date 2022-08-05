@@ -47,3 +47,8 @@
   border-left: 6px solid green;
   height: 500px;
 }
+
+.aaa:hover{
+  background-color: #282c34;
+  transition-duration: 0.3s;
+}

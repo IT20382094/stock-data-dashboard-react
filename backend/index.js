@@ -4,6 +4,7 @@ const cors = require('cors');
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
+const axios  = require('axios');
 dotenv.config();
 
 app.use(cors());
