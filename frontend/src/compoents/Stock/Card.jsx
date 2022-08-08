@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import { Link } from 'react-router-dom';
-import '../../App.css';
 
-export default function Card({ symbol, price_increment }) {
+export default function OutlinedCard({ symbol, price_increment }) {
   const [isHovering, setIsHovering] = useState(false);
 
   const A1 = {
@@ -11,7 +12,7 @@ export default function Card({ symbol, price_increment }) {
     height: '110px',
     marginLeft: '40px',
     boxShadow: '0px 0px 20px',
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#FFFFF',
     borderRadius: '5px',
     color: '#b7b7b7',
   };
@@ -22,7 +23,7 @@ export default function Card({ symbol, price_increment }) {
     fontWeight: '600',
     color: '#1F1F1F',
     marginTop: '10px',
-    textStyle :'bold'
+    textStyle: 'bold',
   };
   const A3 = {
     fontFamily: 'Poppins',
@@ -31,10 +32,6 @@ export default function Card({ symbol, price_increment }) {
     color: '#979797',
   };
 
-  function changeBackground(e) {
-    e.target.style.background = 'red';
-  }
-
   const handleMouseEnter = () => {
     setIsHovering(true);
   };
@@ -42,25 +39,33 @@ export default function Card({ symbol, price_increment }) {
   const handleMouseLeave = () => {
     setIsHovering(false);
   };
-
-  return (
-    <div
-    style={{
-      opacity: isHovering ? '0.4' : '',
-      transform: isHovering? 'scale(1.1)':'',  
-    }}
-
-    onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseLeave}
-  >
-      <div style={A1} onMouseOv={changeBackground} className="intro">
-        <Link to={'/Detail/' + symbol} style={{textDecoration:'none'}}>
-          <div className="card-body">
-            <h3 style={A2}>{symbol}</h3>
-            <h5 style={A3}>{price_increment}</h5>
+  const card = (
+    <React.Fragment>
+      <CardContent>
+        <div
+          style={{
+            transform: isHovering ? 'scale(1.3)' : '',
+            backgroundColor: isHovering ? '#E5E5E5' : '',
+            minHeight: isHovering ? '170px' : '',
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className="intro">
+            <Link to={'/Detail/' + symbol} style={{ textDecoration: 'none' }}>
+              <div>
+                <h3 style={A2}>{symbol}</h3>
+                <h5 style={A3}>{price_increment}</h5>
+              </div>
+            </Link>
           </div>
-        </Link>
-      </div>
-    </div>
+        </div>
+      </CardContent>
+    </React.Fragment>
+  );
+  return (
+    <Card style={A1} variant="outlined">
+      {card}
+    </Card>
   );
 }

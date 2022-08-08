@@ -43,8 +43,9 @@ function Stock() {
   };
 
   const date = new Date();
-  const time = date.getHours;
-  
+  const time = parseInt(date.getHours);
+  console.log(time);
+
   return (
     <div style={A2}>
       {time >= 12 ? (

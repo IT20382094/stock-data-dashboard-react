@@ -3,6 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import ChartL from './Chart';
 import '../../App.css';
 import { detailContainer } from '../../Containers/DetailContainer';
+import { Grid } from '@mui/material';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+// import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 export default function Detail() {
   const { title, title2 } = useParams();
@@ -30,6 +35,7 @@ export default function Detail() {
     height: '460px',
     backgroundColor: '#E4EDEC',
     borderRadius: '8px',
+    padding : '20px'
   };
   const A5 = {
     fontFamily: 'Readex Pro',
@@ -63,94 +69,189 @@ export default function Detail() {
 
   const last = Array.isArray(commonData) ? commonData.slice(-1) : [];
 
-  return (
-    <div>
-      <br />
-      <br />
-      <div className="row">
-        <div className="col-7">
-          <h1 style={A2}>
-          <Link to={'/'} ><i class="bi bi-arrow-left-circle mr-2 text-dark"></i></Link>
-            Average prices of {title}/{title2}
-          </h1>
-          <br />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-8">
-          <div style={A3} className="card">
-            <div className="chart">
-              <ChartL />
-            </div>
-          </div>
-        </div>
-        <div className="col-4">
-          {last?.map((lastItem) => {
-            return (
-              <div style={A4} className="card">
-                <div className="card-body">
-                  <div className="row">
-                    <div className="col-6">
-                      <h1 style={A5}>Current Average Price</h1>
-                    </div>
-                    <div className="col-6">
-                      <h1 style={A8}>{lastItem.vw}</h1>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-6">
-                      <h1 style={A6}>Open Price</h1>
-                    </div>
-                    <div className="col-6">
-                      <h1 style={A7}>{lastItem.o}</h1>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-6">
-                      <h1 style={A6}>High Price</h1>
-                    </div>
-                    <div className="col-6">
-                      <h1 style={A7}>{lastItem.h}</h1>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-6">
-                      <h1 style={A6}>Low Price</h1>
-                    </div>
-                    <div className="col-6">
-                      <h1 style={A7}>{lastItem.l}</h1>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-6">
-                      <h1 style={A6}>Close Price</h1>
-                    </div>
-                    <div className="col-6">
-                      <h1 style={A7}>{lastItem.c}</h1>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-6">
-                      <h1 style={A6}>Volume</h1>
-                    </div>
-                    <div className="col-6">
-                      <h1 style={A7}>{lastItem.v}</h1>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-7">
-                      <h1 style={A6}>Number of Trades</h1>
-                    </div>
-                    <div className="col-5">
-                      <h1 style={A7}>{lastItem.n}</h1>
-                    </div>
+  // return (
+  //   <div>
+  //     <br />
+  //     <br />
+  //     <div className="row">
+  //       <div className="col-7">
+  //         <h1 style={A2}>
+  //         <Link to={'/'} ><i class="bi bi-arrow-left-circle mr-2 text-dark"></i></Link>
+  //           Average prices of {title}/{title2}
+  //         </h1>
+  //         <br />
+  //       </div>
+  //     </div>
+  //     <div className="row">
+  //       <div className="col-8">
+  //         <div style={A3} className="card">
+  //           <div className="chart">
+  //             <ChartL />
+  //           </div>
+  //         </div>
+  //       </div>
+  //       <div className="col-4">
+  //         {last?.map((lastItem) => {
+  //           return (
+  //             <div style={A4} className="card">
+  //               <div className="card-body">
+  //                 <div className="row">
+  //                   <div className="col-6">
+  //                     <h1 style={A5}>Current Average Price</h1>
+  //                   </div>
+  //                   <div className="col-6">
+  //                     <h1 style={A8}>{lastItem.vw}</h1>
+  //                   </div>
+  //                 </div>
+  //                 <div className="row">
+  //                   <div className="col-6">
+  //                     <h1 style={A6}>Open Price</h1>
+  //                   </div>
+  //                   <div className="col-6">
+  //                     <h1 style={A7}>{lastItem.o}</h1>
+  //                   </div>
+  //                 </div>
+  //                 <div className="row">
+  //                   <div className="col-6">
+  //                     <h1 style={A6}>High Price</h1>
+  //                   </div>
+  //                   <div className="col-6">
+  //                     <h1 style={A7}>{lastItem.h}</h1>
+  //                   </div>
+  //                 </div>
+  //                 <div className="row">
+  //                   <div className="col-6">
+  //                     <h1 style={A6}>Low Price</h1>
+  //                   </div>
+  //                   <div className="col-6">
+  //                     <h1 style={A7}>{lastItem.l}</h1>
+  //                   </div>
+  //                 </div>
+  //                 <div className="row">
+  //                   <div className="col-6">
+  //                     <h1 style={A6}>Close Price</h1>
+  //                   </div>
+  //                   <div className="col-6">
+  //                     <h1 style={A7}>{lastItem.c}</h1>
+  //                   </div>
+  //                 </div>
+  //                 <div className="row">
+  //                   <div className="col-6">
+  //                     <h1 style={A6}>Volume</h1>
+  //                   </div>
+  //                   <div className="col-6">
+  //                     <h1 style={A7}>{lastItem.v}</h1>
+  //                   </div>
+  //                 </div>
+  //                 <div className="row">
+  //                   <div className="col-7">
+  //                     <h1 style={A6}>Number of Trades</h1>
+  //                   </div>
+  //                   <div className="col-5">
+  //                     <h1 style={A7}>{lastItem.n}</h1>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           );
+  //         })}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
+  const DetailItem = (
+    <React.Fragment>
+      <CardContent>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={7}>
+              <h1 style={A2}>
+                <Link to={'/'}>
+                  <i class="bi bi-arrow-left-circle mr-2 text-dark"></i>
+                </Link>
+                Average prices of {title}/{title2}
+              </h1>
+              <br />
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={8}>
+                <div style={A3}>
+                  <div className="chart">
+                    <ChartL />
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+              </Grid>
+              <Grid item xs={4}>
+                {last?.map((lastItem) => {
+                  return (
+                    <div style={A4}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <h1 style={A5}>Current Average Price</h1>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h1 style={A8}>{lastItem.vw}</h1>
+                          </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <h1 style={A6}>Open Price</h1>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h1 style={A7}>{lastItem.o}</h1>
+                          </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <h1 style={A6}>High Price</h1>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h1 style={A7}>{lastItem.h}</h1>
+                          </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <h1 style={A6}>Low Price</h1>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h1 style={A7}>{lastItem.l}</h1>
+                          </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <h1 style={A6}>Close Price</h1>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h1 style={A7}>{lastItem.c}</h1>
+                          </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <h1 style={A6}>Volume</h1>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h1 style={A7}>{lastItem.v}</h1>
+                          </Grid>
+                        </Grid>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <h1 style={A6}>Number of Trades</h1>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h1 style={A7}>{lastItem.n}</h1>
+                          </Grid>
+                        </Grid>
+                    </div>
+                  );
+                })}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+      </CardContent>
+    </React.Fragment>
   );
+
+  return <Card variant="outlined">{DetailItem}</Card>;
 }
