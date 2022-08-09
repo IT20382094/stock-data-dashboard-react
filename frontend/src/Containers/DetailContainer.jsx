@@ -14,7 +14,7 @@ function useDetails() {
         'http://localhost:5000/cryptodata/' + title + '/' + title2
       );
       setDetails(
-        response.data['bars'][title + '/' + title2] != undefined &&
+        response.data['bars'][title + '/' + title2] !== undefined &&
           response.data['bars'][title + '/' + title2]
       );
     } catch (err) {
