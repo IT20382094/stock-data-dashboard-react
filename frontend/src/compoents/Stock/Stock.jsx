@@ -43,8 +43,7 @@ function Stock() {
   };
 
   const date = new Date();
-  const time = parseInt(date.getHours);
-  console.log(time);
+  const time = date.getHours();
 
   return (
     <div style={A2}>
